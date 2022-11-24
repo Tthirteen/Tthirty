@@ -1,0 +1,55 @@
+//排序算法 
+#include<stdio.h>
+const N=5;
+void oder(int A[],int n);
+int search(int A[], int n,int high);
+int main()
+{
+	int A[N];
+	int i;
+	double average;
+	int sum=0;
+	for(i=0;i<N;i++){
+		scanf("%d",&A[i]);
+		sum+=A[i];
+	}
+ 	average=sum/N;
+ 	printf("平均数=%.1lf\n",average);
+	//average
+	oder(A,N);
+	printf("max=%d\n",A[0]);
+}
+void oder(int A[],int n)
+{
+	int cnt,i,high;
+	int start=0;
+	high=A[0];
+	for(i=0;i<N;i++){
+	
+		for(cnt=start;cnt<N;cnt++){
+ 			if(A[cnt]>high)
+			high=A[cnt]; 			
+		}
+		//serach high
+			int o,bottle;
+			o=search(A,N,high);
+			bottle=A[i];
+			A[i]=A[o];
+			A[o]=bottle;
+			
+			start++;
+			high=0;		
+	}
+	int m;
+	for(m=0;m<N;m++){
+		printf("%d ",A[m]); 
+	}
+}	 	
+int search(int A[],int n,int high)
+{
+	int i;
+	for(i=0;i<N;i++){
+		if(high==A[i])
+		return i;
+	}
+}
