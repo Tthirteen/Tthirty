@@ -1,0 +1,99 @@
+#include<stdio.h> 
+int magicnumber( int k,int magic[][5],int constnum );
+int main()
+{
+	int result=0;
+	const int constnum=5;	
+	int magic[constnum][constnum]={17,24,1,8,15,23,5,7,14,16,4,6,13,
+	 20,22,10,12,19,21,3,11,18,25,2,9};
+	//hang
+	if(magicnumber( 1,magic,constnum)){
+		result++;
+	}
+	//lie
+	if(magicnumber( 2,magic,constnum)){
+		result++;
+	}
+	//对角线 
+	if(magicnumber( 3,magic,constnum)){
+		result++;
+	}
+	
+	
+	if(result==3)
+		printf("这是魔方矩阵\n"); 
+	else
+	printf("no\n");
+	int i,j;
+	for(i=0;i<5;i++){
+		for(j=0;j<5;j++){
+			printf("%d\t",magic[i][j]);
+		}
+		printf("\n");
+	} 
+}
+int magicnumber( int k,int magic[][5],int constnum )
+{
+	int i,j,c;
+	int num1[20]={0},num2[20]={0},num3[2]={0};
+	if(k=1){
+	
+		for(i=0;i<5;i++)
+		{
+			for(j=0;j<5;j++)
+			{
+				
+				num1[i]+=magic[i][j];
+			}
+				
+		}
+		int c;
+		for(c=0;c<4;c++)
+		{
+			if(num1[c]!=num1[c+1])
+			return 0;
+		}
+		return 1;
+	}
+	if(k=2){
+	
+		for(i=0;i<5;i++){
+		
+			for(j=0;j<5;j++)
+			{
+			
+				num2[i]+=magic[j][i];
+			}
+				
+		}	
+		int c;
+		for(c=0;c<4;c++)
+		{
+			if(num2[c]!=num2[c+1])
+			return 0;
+		}
+		return 1;
+	}
+	if(k=3){
+		
+		for(i=0;i<5;i++){							
+			num3[0]+=magic[i][i];							
+		}
+		while(j>=0)
+		{
+			j=4;
+			i=0;
+			num3[1]+=magic[j][c];
+			j--;
+			c++;
+		}
+		if(num3[1]==num3[0])
+		return 1;
+		else return 0;	
+		
+	}
+}
+
+
+
+
